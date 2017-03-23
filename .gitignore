@@ -13,3 +13,12 @@ hs_err_pid*
 
 # Google App Engine generated folder
 appengine-generated/
+*.project
+.settings
+*.prefs
+WebContent
+.project
+.classpath
+build
+target
+
