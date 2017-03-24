@@ -1,33 +1,50 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.pg.mgmt</groupId>
-		<artifactId>pg-mgmt</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.pg.mgmt</groupId>
+        <artifactId>pg-mgmt</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>webapp</artifactId>
-	<packaging>war</packaging>
-	
-	<name>pg-mgmt Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+    <artifactId>webapp</artifactId>
+    <packaging>war</packaging>
 
-	<dependencies>
+    <name>pg-mgmt Maven Webapp</name>
+    <url>http://maven.apache.org</url>
 
-		<dependency>
-			<groupId>com.pg.mgmt</groupId>
-			<artifactId>core</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+    <dependencies>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	<build>
-		<finalName>pg-mgmt</finalName>
-	</build>
+        <dependency>
+            <groupId>com.pg.mgmt</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <!-- for hot reload of the web application -->
+        <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+        <plugins>
+            <!-- Parent POM defines ${appengine.sdk.version} (updates frequently). -->
+            <plugin>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>${appengine.sdk.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
