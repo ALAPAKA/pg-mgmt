@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- We don't want to use component scanning to improve startup performance as GAE dynamically creates
+    app instances frequently and startup performance is crucial,
+    but to quickly get up running in development, we start with autowiring and component scanning
+    provided we restrict scanning to very specific packages and autowiring by name -->
+    <import resource="classpath:repository-context.xml"/>
+    <context:component-scan base-package="com.pg.mgmt.service.impl" />
+
+    <context:annotation-config />
+
+</beans>

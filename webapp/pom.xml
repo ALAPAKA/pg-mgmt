@@ -17,10 +17,18 @@
 
         <dependency>
             <groupId>com.pg.mgmt</groupId>
-            <artifactId>repository</artifactId>
+            <artifactId>api</artifactId>
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

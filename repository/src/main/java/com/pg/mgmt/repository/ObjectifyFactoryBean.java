@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.googlecode.objectify.ObjectifyService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.FactoryBean;
@@ -64,10 +65,14 @@ public class ObjectifyFactoryBean implements FactoryBean<ObjectifyFactory>, Init
 
     protected final Log logger = LogFactory.getLog(getClass());
 
-    private ObjectifyFactory objectifyFactory;
+    private final ObjectifyFactory objectifyFactory;
 
     private String basePackage;
     private List<Class<?>> classes;
+
+    public ObjectifyFactoryBean() {
+        this.objectifyFactory = ObjectifyService.factory();
+    }
 
     public ObjectifyFactory getObject() throws Exception {
         return this.objectifyFactory;
@@ -94,8 +99,6 @@ public class ObjectifyFactoryBean implements FactoryBean<ObjectifyFactory>, Init
         if (basePackage != null && basePackage.length() > 0) {
             classes.addAll(doScan());
         }
-
-        this.objectifyFactory = new ObjectifyFactory();
 
         for (Class<?> clazz : classes) {
             this.objectifyFactory.register(clazz);
