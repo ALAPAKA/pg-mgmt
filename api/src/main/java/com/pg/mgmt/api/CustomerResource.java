@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 /**
  * Created by Siva on 3/26/2017.
  */
@@ -32,7 +34,7 @@ public class CustomerResource {
     }
 
     @PostMapping(path = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Customer save(Customer customer) {
+    public Customer save(@RequestBody Customer customer) {
         if (customer == null) {
             throw new IllegalArgumentException("customer entity should not be null.");
         }
