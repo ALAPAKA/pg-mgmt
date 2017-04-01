@@ -13,6 +13,13 @@
     <name>pg-mgmt Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
+        <properties>
+            <!--pass -Dfrontend.build.mdoe=build as system property to run in prod mode
+            default is start web server-->
+            <frontend.build.mdoe>start</frontend.build.mdoe>
+           <!-- <frontend.build.mdoe>build</frontend.build.mdoe>-->
+        </properties>
+
     <dependencies>
 
         <dependency>
@@ -61,11 +68,10 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v6.10.1</nodeVersion>
-                            <npmVersion>3.10.10</npmVersion>
+                            <nodeVersion>${nodeVersion}</nodeVersion>
+                            <npmVersion>${npmVersion}</npmVersion>
                         </configuration>
                     </execution>
-
                     <execution>
                         <id>npm install</id>
                         <goals>
@@ -81,15 +87,44 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>run ${frontend.build.mdoe}</arguments>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/src/main/webapp/ui</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>src/main/webapp/ui</outputDirectory>
+                    <resources>
+                        <resource>
+                            <directory>${basedir}/app-ui/build</directory>
+                            <filtering>false</filtering>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
             <!-- Parent POM defines ${appengine.sdk.version} (updates frequently). -->
             <plugin>
                 <groupId>com.google.appengine</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
+                <configuration>
+                    <port>80</port>
+                </configuration>
             </plugin>
         </plugins>
     </build>

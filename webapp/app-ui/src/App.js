@@ -3,6 +3,7 @@ import logo from './logo.svg';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'whatwg-fetch';
 import './App.css';
 
 class App extends Component {

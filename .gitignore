@@ -39,3 +39,4 @@ yarn-error.log*
 
 tools
 
+/webapp/src/main/webapp/ui/
