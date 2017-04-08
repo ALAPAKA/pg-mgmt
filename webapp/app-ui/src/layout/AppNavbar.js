@@ -21,7 +21,7 @@ class AppNavbar extends Component {
                             <MenuItem divider />
                             <MenuItem eventKey={1.2}>Check Out</MenuItem>
                         </NavDropdown>
-                        <NavItem eventKey={2} href="#L">Link</NavItem>
+                        <NavItem eventKey={2} href="#">Guest</NavItem>
                         <NavDropdown eventKey={3} title="Portal Admin" id="basic-nav-dropdown">
                             <MenuItem eventKey={3.1}>Register PG</MenuItem>
                             <MenuItem divider />
@@ -29,7 +29,7 @@ class AppNavbar extends Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem eventKey={1} >Link Right</NavItem>
+                        <NavItem eventKey={1} > </NavItem>
                         <NavDropdown eventKey={3} title={ <Glyphicon glyph="user" /> } id="basic-nav-dropdown">
                             <MenuItem eventKey={3.1}>Action</MenuItem>
                             <MenuItem divider />
