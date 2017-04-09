@@ -3,13 +3,14 @@
  */
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap';
+import FirebaseLogin from "../auth/Auth";
 
 class AppNavbar extends Component {
     render() {
         return (
             <Navbar inverse collapseOnSelect fluid staticTop default >
                 <Navbar.Header>
-                    <Navbar.Brand pullLeft="true" >
+                    <Navbar.Brand>
                             Paying Guest Portal
                     </Navbar.Brand>
                     <Navbar.Toggle />
@@ -31,9 +32,9 @@ class AppNavbar extends Component {
                     <Nav pullRight>
                         <NavItem eventKey={1} > </NavItem>
                         <NavDropdown eventKey={3} title={ <Glyphicon glyph="user" /> } id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1}>Action</MenuItem>
+                            <FirebaseLogin />
                             <MenuItem divider />
-                            <MenuItem eventKey={3.3}>Separated link </MenuItem>
+                            <MenuItem eventKey={3.3}>Logout</MenuItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
