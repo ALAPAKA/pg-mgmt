@@ -11,19 +11,31 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:service-context.xml</param-value>
+        <param-value>classpath:service-context.xml, classpath:sec/spring-security.xml</param-value>
     </context-param>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
     <filter>
         <filter-name>ObjectifyFilter</filter-name>
         <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
     </filter>
     <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>ObjectifyFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>spring-web-api</servlet-name>
         <servlet-class>
@@ -36,18 +48,13 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <servlet>
-        <servlet-name>hello</servlet-name>
-        <servlet-class>com.example.appengine.helloworld.HelloServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>hello</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>spring-web-api</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>ui/index.html</welcome-file>
+    </welcome-file-list>
 
 </web-app>

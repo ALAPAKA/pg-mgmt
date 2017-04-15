@@ -16,7 +16,7 @@
         <properties>
             <!--pass -Dfrontend.build.mdoe=build as system property to run in prod mode
             default is start web server-->
-            <frontend.build.mdoe>start</frontend.build.mdoe>
+            <frontend.build.mode>build</frontend.build.mode>
            <!-- <frontend.build.mdoe>build</frontend.build.mdoe>-->
         </properties>
 
@@ -25,6 +25,11 @@
         <dependency>
             <groupId>com.pg.mgmt</groupId>
             <artifactId>api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pg.mgmt</groupId>
+            <artifactId>user-service</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -40,7 +45,6 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
             <scope>provided</scope>
         </dependency>
 
@@ -87,7 +91,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run ${frontend.build.mdoe}</arguments>
+                            <arguments>run ${frontend.build.mode}</arguments>
                         </configuration>
                     </execution>
                 </executions>

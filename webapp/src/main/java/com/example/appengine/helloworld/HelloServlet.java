@@ -16,6 +16,9 @@
 
 package com.example.appengine.helloworld;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -30,7 +33,15 @@ public class HelloServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     PrintWriter out = resp.getWriter();
-    out.println("Hello, world");
+    if(req.getParameter("login") == null) {
+      out.println("Hello, world");
+      return;
+    }
+    UserService userService = UserServiceFactory.getUserService();
+
+    resp.sendRedirect(userService.createLoginURL(req.getRequestURI().substring(0, req.getRequestURI().indexOf('?'))));
+//    out.println("Hello, world");
+
   }
 }
 // [END example]
