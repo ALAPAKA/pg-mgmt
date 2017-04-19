@@ -19,13 +19,13 @@ package com.pg.mgmt.security.users;
  *
  * Service used to maintain a list of users who are registered with the application.
  *
- * @author Luke Taylor
+ * Created by Siva on 4/9/2017.
  */
 public interface UserRegistry {
 
-	GaeUser findUser(String userId);
+	AppUser findUser(String userId);
 
-	void registerUser(GaeUser newUser);
+	void registerUser(AppUser newAppUser);
 
 	void removeUser(String userId);
 }

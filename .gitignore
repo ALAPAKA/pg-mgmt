@@ -40,3 +40,4 @@ yarn-error.log*
 tools
 
 /webapp/src/main/webapp/ui/
+/webapp/src/main/resources/pg-mgmt-firebase-adminsdk-drbnl-642ed69822.json

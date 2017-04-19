@@ -18,10 +18,10 @@ package com.pg.mgmt.security.spring;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
- * @author Luke Taylor
+ * Created by Siva on 4/9/2017.
  */
 public enum AppRole implements GrantedAuthority {
-	ADMIN(0), NEW_USER(1), USER(2), PG_ADMIN(3), PG_CUSTOMER(4);
+	ADMIN(0), NEW_USER(1), USER(2), PG_ADMIN(3), PG_CUSTOMER(4), ANONYMOUS(5);
 
 	private final int bit;
 

@@ -25,9 +25,12 @@ import java.util.Set;
 /**
  * Custom user object for the application.
  *
- * @author Luke Taylor
+ * Created by Siva on 4/9/2017.
  */
-public class GaeUser implements Serializable {
+public class AppUser implements Serializable {
+
+    static final long serialVersionUID = 1L;
+
     private final String userId;
     private final String email;
     private final String nickname;
@@ -41,7 +44,7 @@ public class GaeUser implements Serializable {
      * <p>
      * Assigns the user the "NEW_USER" role only.
      */
-    public GaeUser(String userId, String nickname, String email) {
+    public AppUser(String userId, String nickname, String email) {
         this.userId = userId;
         this.nickname = nickname;
         this.authorities = EnumSet.of(AppRole.NEW_USER);
@@ -54,7 +57,7 @@ public class GaeUser implements Serializable {
     /**
      * Post-registration constructor
      */
-    public GaeUser(String userId, String nickname, String email, String forename,
+    public AppUser(String userId, String nickname, String email, String forename,
                    String surname, Set<AppRole> authorities, boolean enabled) {
         this.userId = userId;
         this.nickname = nickname;
@@ -95,8 +98,14 @@ public class GaeUser implements Serializable {
 
     @Override
     public String toString() {
-        return "GaeUser{" + "userId='" + userId + '\'' + ", nickname='" + nickname + '\''
-                + ", forename='" + forename + '\'' + ", surname='" + surname + '\''
-                + ", authorities=" + authorities + '}';
+        return "AppUser{" +
+                "userId='" + userId + '\'' +
+                ", email='" + email + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", forename='" + forename + '\'' +
+                ", surname='" + surname + '\'' +
+                ", authorities=" + authorities +
+                ", enabled=" + enabled +
+                '}';
     }
 }

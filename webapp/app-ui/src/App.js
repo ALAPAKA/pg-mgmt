@@ -6,7 +6,7 @@ import './App.css';
 import AppNavbar from './navigation/AppNavbar';
 import BodyContainer from './layout/BodyContainer';
 import PageFooter from './layout/PageFooter';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+// import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 class App extends Component {
     render() {

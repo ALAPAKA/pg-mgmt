@@ -28,12 +28,13 @@
         <npmVersion>3.10.10</npmVersion>
 
         <appengine.sdk.version>1.9.51</appengine.sdk.version>
-        <firebase-admin.version>4.1.5</firebase-admin.version>
+        <firebase-admin.version>4.1.6</firebase-admin.version>
         <appengine.app.version>1</appengine.app.version>
         <spring.version>4.3.7.RELEASE</spring.version>
         <slf4j.version>1.7.25</slf4j.version>
         <guava.version>20.0</guava.version>
         <objectify.version>5.1.16</objectify.version>
+        <commons-lang3.version>3.5</commons-lang3.version>
 
         <jersey.version>2.11</jersey.version>
         <jackson.version>2.8.6</jackson.version>
@@ -196,6 +197,12 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
 
             <dependency>

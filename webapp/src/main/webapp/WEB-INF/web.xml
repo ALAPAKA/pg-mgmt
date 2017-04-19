@@ -47,10 +47,21 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>admin-login-servlet</servlet-name>
+        <servlet-class>
+            com.pg.mgmt.app.AdminAuthServlet
+        </servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>spring-web-api</servlet-name>
         <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>admin-login-servlet</servlet-name>
+        <url-pattern>/admin/auth</url-pattern>
     </servlet-mapping>
     
     <welcome-file-list>

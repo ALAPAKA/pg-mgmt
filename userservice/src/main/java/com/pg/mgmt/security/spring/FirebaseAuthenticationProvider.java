@@ -1,6 +1,5 @@
 package com.pg.mgmt.security.spring;
 
-import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.pg.mgmt.security.users.AppUser;
 import org.springframework.context.MessageSource;
@@ -23,10 +22,10 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
  * temporary identity with limited access until they have registered.
  * <p>
  * If the account has been disabled, a {@code DisabledException} will be raised.
- * <p>
+ *
  * Created by Siva on 4/9/2017.
  */
-public class GoogleAccountsAuthenticationProvider implements AuthenticationProvider,
+public class FirebaseAuthenticationProvider implements AuthenticationProvider,
         MessageSourceAware {
     protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
 
@@ -34,22 +33,27 @@ public class GoogleAccountsAuthenticationProvider implements AuthenticationProvi
 
     public Authentication authenticate(Authentication authentication)
             throws AuthenticationException {
-        User googleUser = (User) authentication.getPrincipal();
+        AppUser firebaseUser = (AppUser) authentication.getPrincipal();
+
 //        AppUser appUser = userRegistry.findUser(googleUser.getUserId());
-        AppUser appUser = null;
-        if (appUser == null) {
-            // AppUser not in registry. Needs to register
-            appUser = new AppUser(googleUser.getUserId(), googleUser.getNickname(),
-                    googleUser.getEmail());
-            if (UserServiceFactory.getUserService().isUserLoggedIn() &&
-                    UserServiceFactory.getUserService().isUserAdmin()) {
-                appUser.getAuthorities().add(AppRole.ADMIN);
-            }
-        }
-        if (!appUser.isEnabled()) {
+//        AppUser appUser = null;
+//
+//        if (appUser == null) {
+//            // AppUser not in registry. Needs to register
+//            appUser = new AppUser(googleUser.getUserId(), googleUser.getNickname(),
+//                    googleUser.getEmail());
+//            if(UserServiceFactory.getUserService().isUserLoggedIn() &&
+//                    UserServiceFactory.getUserService().isUserAdmin()) {
+//                appUser.getAuthorities().add(AppRole.ADMIN);
+//            }
+//        }
+        //TODO
+
+        if (!firebaseUser.isEnabled()) {
             throw new DisabledException("Account is disabled");
         }
-        return new AppUserAuthentication(appUser, authentication.getDetails());
+
+        return new AppUserAuthentication(firebaseUser, authentication.getDetails());
     }
 
     /**
@@ -57,7 +61,7 @@ public class GoogleAccountsAuthenticationProvider implements AuthenticationProvi
      * (sub)classes.
      */
     public final boolean supports(Class<?> authentication) {
-        return GAEPreAuthenticatedAuthenticationToken.class.isAssignableFrom(authentication);
+        return FirebasePreAuthenticatedAuthenticationToken.class.isAssignableFrom(authentication);
     }
 
 //    public void setUserRegistry(UserRegistry userRegistry) {

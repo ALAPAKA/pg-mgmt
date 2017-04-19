@@ -24,24 +24,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Luke Taylor
+ * Created by Siva on 4/9/2017.
  */
 public class InMemoryUserRegistry implements UserRegistry {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
-	private final Map<String, GaeUser> users = Collections
-			.synchronizedMap(new HashMap<String, GaeUser>());
+	private final Map<String, AppUser> users = Collections
+			.synchronizedMap(new HashMap<String, AppUser>());
 
-	public GaeUser findUser(String userId) {
+	public AppUser findUser(String userId) {
 		return users.get(userId);
 	}
 
-	public void registerUser(GaeUser newUser) {
-		logger.debug("Attempting to create new user " + newUser);
+	public void registerUser(AppUser newAppUser) {
+		logger.debug("Attempting to create new user " + newAppUser);
 
-		Assert.isTrue(!users.containsKey(newUser.getUserId()), "user should not exist");
+		Assert.isTrue(!users.containsKey(newAppUser.getUserId()), "user should not exist");
 
-		users.put(newUser.getUserId(), newUser);
+		users.put(newAppUser.getUserId(), newAppUser);
 	}
 
 	public void removeUser(String userId) {

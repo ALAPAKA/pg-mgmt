@@ -1,6 +1,6 @@
 package com.pg.mgmt.security.spring;
 
-import com.pg.mgmt.security.users.GaeUser;
+import com.pg.mgmt.security.users.AppUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -12,12 +12,12 @@ import java.util.HashSet;
  * <p>
  * Created by Siva on 4/9/2017.
  */
-public class GaeUserAuthentication implements Authentication {
-    private final GaeUser principal;
+public class AppUserAuthentication implements Authentication {
+    private final AppUser principal;
     private final Object details;
     private boolean authenticated;
 
-    public GaeUserAuthentication(GaeUser principal, Object details) {
+    public AppUserAuthentication(AppUser principal, Object details) {
         this.principal = principal;
         this.details = details;
         authenticated = true;
@@ -53,7 +53,7 @@ public class GaeUserAuthentication implements Authentication {
 
     @Override
     public String toString() {
-        return "GaeUserAuthentication{" + "principal=" + principal + ", details="
+        return "AppUserAuthentication{" + "principal=" + principal + ", details="
                 + details + ", authenticated=" + authenticated + '}';
     }
 }

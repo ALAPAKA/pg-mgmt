@@ -17,7 +17,8 @@
         <csrf disabled="true"/>
         <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/logout.htm" access="permitAll" />
-        <intercept-url pattern="/register.htm*" access="hasAnyRole('NEW_USER','ADMIN')" />
+        <intercept-url pattern="/authcheck*" access="hasAnyRole('USER','NEW_USER','ADMIN')" />
+        <intercept-url pattern="/register.htm*" access="hasAnyRole('NEW_USER','ADMIN', 'ANONYMOUS')" />
         <intercept-url pattern="/**" access="hasAnyRole('USER','ADMIN')" />
         <custom-filter position="PRE_AUTH_FILTER" ref="gaeFirebaseFilter" />
     </http>
@@ -38,11 +39,14 @@
     </b:bean>
 
     <authentication-manager alias="authenticationManager">
+        <authentication-provider ref="firebaseAuthenticationProvider"/>
         <authentication-provider ref="gaeAuthenticationProvider"/>
     </authentication-manager>
 
     <b:bean id="gaeAuthenticationProvider" class="com.pg.mgmt.security.spring.GoogleAccountsAuthenticationProvider">
         <!--<b:property name="userRegistry" ref="userRegistry" />-->
+    </b:bean>
+    <b:bean id="firebaseAuthenticationProvider" class="com.pg.mgmt.security.spring.FirebaseAuthenticationProvider">
     </b:bean>
 
     <!--<b:bean id="userRegistry" class="samples.gae.users.GaeDatastoreUserRegistry" />-->
